@@ -2,8 +2,8 @@ from services.productos import Productos
 
 
 class Juguetes(Productos):
-    def __init__(self, id, nombre, tipo, precio, marca, color, tamanio, material, peso):
-        super().__init__(id, nombre, tipo, precio)
+    def __init__(self, nombre, tipo, precio, marca, color, tamanio, material, peso):
+        super().__init__(nombre, tipo, precio)
         self.marca = marca
         self.color = color
         self.tamanio = tamanio
@@ -13,6 +13,22 @@ class Juguetes(Productos):
     def __del__(self):
         pass
 
-    def mostrar_datos(self):
-        super().mostrar_datos()
-        print ("MARCA:  "+ self.marca + "\nCOLOR: "+ self.color + "\nTAMAÑO: " + str(self.tamanio) + " cm \nMATERIAL: " + self.material + "\nPESO:" +str(self.peso) + " gr.")
+    @staticmethod
+    def mostrar_datos(producto):
+        Productos.mostrar_datos(producto)
+        print ("MARCA:  "+ producto['marca'] + "\nCOLOR: "+ producto['color'] + "\nTAMAÑO: " + str(producto['tamanio']) + " cm \nMATERIAL: " + producto['material'] + "\nPESO:" +str(producto['peso']) + " gr.")
+
+
+    def push(self, array):
+        nuevo_producto = {
+            'id': self.id,
+            'nombre': self.nombre,
+            'tipo': self.tipo,
+            'precio': self.precio,
+            'marca': self.marca,
+            'color': self.color,
+            'tamanio': self.tamanio,
+            'material': self.material,
+            'peso': self.peso,
+        }
+        array.append(nuevo_producto)

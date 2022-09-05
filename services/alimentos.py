@@ -2,8 +2,8 @@ from services.productos import Productos
 
 
 class Alimentos(Productos):
-    def __init__(self, id, nombre, tipo, precio, caducidad, neto, produccion):
-        super().__init__(id, nombre, tipo, precio)
+    def __init__(self, nombre, tipo, precio, caducidad, neto, produccion):
+        super().__init__(nombre, tipo, precio)
         self.caducidad = caducidad
         self.neto = neto
         self.produccion = produccion
@@ -11,6 +11,19 @@ class Alimentos(Productos):
     def __del__(self):
         pass
 
-    def mostrar_datos(self):
-        super().mostrar_datos()
-        print ("CADUCIDAD: " + self.caducidad + "\nCANTIDAD NETA: " + str(self.neto) + "g\nFECHA DE PRODUCCIÓN: " + self.produccion)
+    @staticmethod
+    def mostrar_datos(producto):
+        Productos.mostrar_datos(producto)
+        print ("CADUCIDAD: " + producto['caducidad'] + "\nCANTIDAD NETA: " + str(producto['neto']) + "g\nFECHA DE PRODUCCIÓN: " + producto['produccion'])
+
+    def push(self, array):
+        nuevo_producto = {
+            'id': self.id,
+            'nombre': self.nombre,
+            'tipo': self.tipo,
+            'precio': self.precio,
+            'caducidad': self.caducidad,
+            'neto': self.neto,
+            'produccion': self.produccion,
+        }
+        array.append(nuevo_producto)

@@ -1,6 +1,9 @@
+import uuid
+
+
 class Productos():
-    def __init__(self, id, nombre, tipo, precio):
-        self.id = id
+    def __init__(self, nombre, tipo, precio):
+        self.id = uuid.uuid1().__str__()
         self.nombre = nombre
         self.tipo = tipo
         self.precio = precio
@@ -8,17 +11,48 @@ class Productos():
     def __del__(self):
         pass
 
-    def mostrar_datos(self):
-        print ("PRODUCTO: " + str(self.ID) + "\nNOMBRE: " + self.nombre + "\nCATEGORIA: " + self.tipo + "\nPRECIO: $" + str(self.precio))
+    @staticmethod
+    def mostrar_datos(producto):
+        print ("PRODUCTO: " + str(producto['id']) + "\nNOMBRE: " + producto['nombre'] + "\nCATEGORIA: " + producto['tipo'] + "\nPRECIO: $" + str(producto['precio']))
 
-    def comprar(self):
-        print("Inserte la cantidad de " + self.nombre + " que desea comprar")
+    @staticmethod
+    def get(array, id):
+        for producto in array:
+            if producto.id == id:
+                return producto
+
+    def push(self, array):
+        nuevo_producto = {
+            'id': self.id,
+            'nombre': self.nombre,
+            'tipo': self.tipo,
+            'precio': self.precio,
+        }
+        array.append(nuevo_producto)
+
+    @staticmethod
+    def patch(array, id, nuevo_producto):
+        for producto in array:
+            if producto.id == id:
+                producto = nuevo_producto
+
+    @staticmethod
+    def delete(array, id):
+        for i in range(len(array)):
+            if array[i]['id'] == id:
+                del array[i]
+                break
+
+    @staticmethod
+    def comprar(producto):
+        print("Inserte la cantidad de " + producto['nombre'] + " que desea comprar")
         cant = int(input())
-        compra = cant * self.precio
+        compra = cant * int(producto['precio'])
         print("El total de su compra es: " + str(compra))
         return compra
 
-    def pago_tarjeta(self, compra):
+    @staticmethod
+    def pago_tarjeta(compra):
         print("A ESCOGIDO LA OPCION DE PAGAR CON TARJETA")
         print(" La cantidad a pagar es: " + str(compra))
         MSI = input("Desea pagar a meses sin intereses? SI/NO: ")
@@ -49,13 +83,13 @@ class Productos():
         else:
             print("Escoja una opcion valida")
 
-
-    def pago_efectivo(self, compra):
+    @staticmethod
+    def pago_efectivo(compra):
         print("A ESCOGIDO LA OPCION DE PAGAR CON EFECTIVO")
         print(" La cantidad a pagar es: " + str(compra))
         x = int(input("Inserte el dinero: "))
-        if(x==compra):
+        if x == compra:
             print("Gracias por su compra")
-        elif(x!=compra):
+        elif x != compra:
             cambio = x - compra
             print("Su cambio es $" + str(cambio) + ".00 gracias por su compra")
