@@ -18,7 +18,7 @@ class Productos():
     @staticmethod
     def get(array, id):
         for producto in array:
-            if producto.id == id:
+            if producto['id'] == id:
                 return producto
 
     def push(self, array):

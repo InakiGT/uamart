@@ -52,8 +52,8 @@ def menu():
         elif a == 2:
             print(" /// COMPRAR ///")
             id = input("Inserte el ID del producto que desea comprar: ")
-            if next ((item for item in productos if item["id"] == id))['id'] != "":
-                producto = next ((item for item in productos if item["id"] == id))
+            if Productos.get(productos, id)['id'] != "":
+                producto = Productos.get(productos, id)
                 compra = Productos.comprar(producto)
                 print("""
                 Desea pagar con:
@@ -76,7 +76,8 @@ def menu():
         elif a == 4:
             print(" /// BUSCAR ///")
             id = input("Inserta el id del procucto que deseas buscar: ")
-            producto = next ((item for item in productos if item["id"] == id))
+            producto = Productos.get(productos, id)
+
             if producto['tipo'] == 'General':
                 Productos.mostrar_datos(producto)
             elif producto['tipo'] == 'ALimentos':
