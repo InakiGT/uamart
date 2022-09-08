@@ -40,7 +40,10 @@ class Productos():
         for i in range(len(array)):
             if array[i]['id'] == id:
                 del array[i]
+                print("Producto eliminado")
                 break
+            elif i == len(array) - 1:
+                print("Producto no encontrado")
 
     @staticmethod
     def comprar(producto):

@@ -81,6 +81,10 @@ def menu():
             id = input("Inserta el id del procucto que deseas buscar: ")
             producto = Productos.get(productos, id)
 
+            if producto == None:
+                print("Producto no encontrado")
+                continue
+
             if producto['tipo'] == 'General':
                 Productos.mostrar_datos(producto)
             elif producto['tipo'] == 'ALimentos':
@@ -108,6 +112,11 @@ def menu():
             print(" /// ACTUALIZAR ///")
             id = input("Inserta el id del procucto que deseas actualizar: ")
             producto = Productos.get(productos, id)
+
+            if producto == None:
+                print("Producto no encontrado")
+                continue
+
             nuevo_producto = actualizar(producto['tipo'])
             nuevo_producto['id'] = producto['id']
 
