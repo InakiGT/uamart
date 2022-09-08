@@ -47,6 +47,7 @@ def menu():
             (8) Vinos y Licores
             (9) Panaderia
             (10) Farmacia
+            (11) Frutas y verduras
             """)
             opcion = int(input("Inserta una opcion: "))
             agregar(opcion)

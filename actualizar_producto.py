@@ -167,4 +167,14 @@ def actualizar(opcion):
             'controlado': producto.controlado,
         }
 
+    elif opcion == 'Frutas y verduras':
+        producto = Farmacia(input(' NOMBRE: '), 'Frutas y verduras', int(input(' PRECIO: ')), int(input(' NETO: ')))
+        nuevo_producto = {
+            'id': producto.id,
+            'nombre': producto.nombre,
+            'tipo': producto.tipo,
+            'precio': producto.precio,
+            'neto': producto.neto,
+        }
+
     return nuevo_producto
