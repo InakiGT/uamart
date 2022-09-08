@@ -32,9 +32,8 @@ class Productos():
 
     @staticmethod
     def patch(array, id, nuevo_producto):
-        for producto in array:
-            if producto.id == id:
-                producto = nuevo_producto
+        Productos.delete(array, id)
+        array.append(nuevo_producto)
 
     @staticmethod
     def delete(array, id):

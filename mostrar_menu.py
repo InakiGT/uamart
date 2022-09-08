@@ -1,3 +1,4 @@
+from actualizar_producto import actualizar
 from data import productos
 from agregar_producto import agregar
 from services.alimentos import Alimentos
@@ -21,6 +22,7 @@ def menu():
         (2) Comprar producto
         (3) Eliminar producto
         (4) Buscar producto
+        (5) Actualizar producto
         """)
         a = int(input("Inserte la opcion que desee: "))
         print(a)
@@ -100,3 +102,16 @@ def menu():
                 Panaderia.mostrar_datos(producto)
             elif producto['tipo'] == 'Farmacia':
                 Farmacia.mostrar_datos(producto)
+
+        elif a == 5:
+            print(" /// ACTUALIZAR ///")
+            id = input("Inserta el id del procucto que deseas actualizar: ")
+            producto = Productos.get(productos, id)
+            nuevo_producto = actualizar(producto['tipo'])
+            nuevo_producto['id'] = producto['id']
+
+            Productos.patch(productos, id, nuevo_producto)
+            Productos.mostrar_datos(nuevo_producto)
+
+        else:
+            print("--- Opción inválida ---")
